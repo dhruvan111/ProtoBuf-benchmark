@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+
+message ConversationTranscriptEvent {
+  ConversationTranscriptEvent JSON_FACTORY = 1;
+  sint64 partnerId = 2;
+  string appId = 3;
+  string conversationId = 4;
+  sint64 caseNumber = 5;
+  string streamId = 6;
+  string participantId = 7;
+  string participantType = 8;
+  sint64 streamStartTimeMillis = 9;
+  sint64 convStartTimeMillis = 10;
+  string lang = 11;
+  sint32 retryCount = 12;
+}

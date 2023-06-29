@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+
+message OzData {
+  string audioDuration = 1;
+  bool isFinal = 2;
+  string cumulativeAudioDuration = 3;
+  sint32 sequenceNumber = 4;
+  sint64 callTime = 5;
+  string ucid = 6;
+  string sid = 7;
+  string timestamp = 8;
+  string token = 9;
+  repeated sint32 audioBytes = 10;
+}

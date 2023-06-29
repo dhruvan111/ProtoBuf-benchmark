@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "test.beans2";
+
+option java_multiple_files = true;
+
+
+message StreamMetadata {
+  string appId = 1;
+  string conversationId = 2;
+  sint64 caseNumber = 3;
+  string callbackUrl = 4;
+  string participantId = 5;
+  string participantType = 6;
+  sint64 partnerId = 7;
+  bool disableTranscript = 8;
+  bool disableRecording = 9;
+  string lang = 10;
+}

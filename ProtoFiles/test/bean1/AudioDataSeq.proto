@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+
+message AudioDataSeq {
+  sint32 seq = 1;
+  repeated sint32 audio = 2;
+  bool isFinal = 3;
+  sint64 duration = 4;
+  sint64 cumulativeAudioDuration = 5;
+}

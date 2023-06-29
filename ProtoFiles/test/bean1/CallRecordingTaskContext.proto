@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+
+message CallRecordingTaskContext {
+  CallRecordingTaskContext JSON_FACTORY = 1;
+  sint64 partnerId = 2;
+  string conversationId = 3;
+}

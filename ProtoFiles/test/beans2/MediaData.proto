@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "test.beans2";
+
+option java_multiple_files = true;
+
+
+message MediaData {
+  string track = 1;
+  string chunk = 2;
+  string timestamp = 3;
+  string payload = 4;
+  repeated sint32 bytes = 5;
+  sint64 durationMillis = 6;
+}

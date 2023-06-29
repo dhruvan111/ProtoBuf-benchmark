@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+import "test/bean1/AudioFeedData.proto";
+
+message AudioStreamFeedData {
+  sint64 partnerId = 1;
+  string streamId = 2;
+  string appId = 3;
+  bool isFinal = 4;
+  repeated AudioFeedData audioFeed0 = 5;
+
+}

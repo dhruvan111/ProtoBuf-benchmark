@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+
+message CallAudioStreamMetadata {
+  string FIELD_ID = 1;
+  string FIELD_CONVERSATION_ID = 2;
+  string FIELD_STREAM_START_TIME = 3;
+  string FIELD_RECORDING_PROCESSED = 4;
+  string FIELD_STREAM_PROCESSED = 5;
+  string FIELD_STREAM_ENDED = 6;
+  string FIELD_CONVERSATION_START_TIME = 7;
+  string FIELD_RETRY_COUNT = 8;
+  string FIELD_MODIFIED_TIME = 9;
+  string FIELD_STREAMING_DATA = 10;
+  string FIELD_FIRST_PACKET_TIME = 11;
+  string FIELD_PROCESSED_BY_JOB = 12;
+  string FIELD_DISABLE_TRANSCRIPT = 13;
+  string FIELD_DISABLE_RECORDING = 14;
+  string id = 15;
+  string conversationId = 16;
+  string appId = 17;
+  sint64 caseNumber = 18;
+  sint32 lastSeqNumber = 19;
+  bool streamEnded = 20;
+  sint64 streamStartTime = 21;
+  sint64 conversationStartTime = 22;
+  string participantId = 23;
+  string participantType = 24;
+  sint64 firstPacketTime = 25;
+  sint64 lastPacketTime = 26;
+  sint64 modifiedTime = 27;
+  bool streamProcessed = 28;
+  bool recordingProcessed = 29;
+  bool processedByJob = 30;
+  sint32 retryCount = 31;
+  bool streamingData = 32;
+  bool disableTranscript = 33;
+  bool disableRecording = 34;
+  string lang = 35;
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+
+message AudioFeedData {
+  AudioFeedData JSON_FACTORY = 1;
+  sint64 partnerId = 2;
+  string streamId = 3;
+  string conversationId = 4;
+  string appId = 5;
+  sint64 caseNumber = 6;
+  sint32 seqNumber = 7;
+  sint64 streamStartTime = 8;
+  bool isFinal = 9;
+  string participantId = 10;
+  string participantType = 11;
+  repeated sint32 audioBytes = 12;
+  sint64 createdTime = 13;
+  bool disableTranscript = 14;
+  bool disableRecording = 15;
+  string lang = 16;
+  sint64 duration = 17;
+  sint64 cumulativeAudioDuration = 18;
+  bool streamingData = 19;
+}

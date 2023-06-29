@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "test.beans2";
+
+option java_multiple_files = true;
+
+import "test/beans2/StartData.proto";
+import "test/beans2/StopData.proto";
+import "test/beans2/MediaData.proto";
+
+message TwilioEvent {
+  TwilioEvent JSON_FACTORY = 1;
+  string event = 2;
+  string sequenceNumber = 3;
+  string streamSid = 4;
+  StartData start = 5;
+  MediaData media = 6;
+  StopData stop = 7;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+import "test/bean1/ConversationTranscriptEvent.proto";
+
+message ConversationTranscripts {
+  sint64 partnerId = 1;
+  string conversationId = 2;
+  repeated ConversationTranscriptEvent transcriptEvents0 = 3;
+
+}

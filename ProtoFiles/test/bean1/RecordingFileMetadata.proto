@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+
+message RecordingFileMetadata {
+  string participantId = 1;
+  string participantType = 2;
+  double durationMillis = 3;
+  sint64 streamStartTimeMillis = 4;
+}

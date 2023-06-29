@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "test.beans2";
+
+option java_multiple_files = true;
+
+
+message StopData {
+  string accountSid = 1;
+  string callSid = 2;
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+
+message Interaction {
+  string id = 1;
+  string conversationId = 2;
+  string party = 3;
+  string fromId = 4;
+  sint64 callStartTime = 5;
+  sint32 startTime = 6;
+  sint32 endTime = 7;
+  sint64 recordingOffset = 8;
+  sint32 duration = 9;
+  string contents = 10;
+  repeated string topics0 = 11;
+
+  sint64 lastPacketReceivedTime = 12;
+  sint64 vadResponseTime = 13;
+  sint64 asrResponseTime = 14;
+}

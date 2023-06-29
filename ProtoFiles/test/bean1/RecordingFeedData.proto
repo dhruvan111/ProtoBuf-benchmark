@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+import "test/bean1/AudioDataSeq.proto";
+
+message RecordingFeedData {
+  sint64 partnerId = 1;
+  string conversationId = 2;
+  string streamId = 3;
+  repeated AudioDataSeq audioDataSeqList0 = 4;
+
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "test.bean1";
+
+option java_multiple_files = true;
+
+
+message RTSVadResponse {
+  sint64 lastPacketReceivedTime = 1;
+  sint64 createdTime = 2;
+}
