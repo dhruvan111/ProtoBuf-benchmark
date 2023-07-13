@@ -1,9 +1,12 @@
-package test;
+package test.sizetesting;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.graph.Graph;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.beans2.*;
+import org.openjdk.jol.info.ClassLayout;
+import org.openjdk.jol.info.GraphLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,18 +14,10 @@ import java.util.List;
 
 import static test.TestRunner5.*;
 
-public class TestRunner7 {
+public class TestRunner2 {
 
     private static TwilioEvent getObjProto(List<Integer> byteData){
 
-        List<String> bigDataList = new ArrayList<>();
-
-        for (int i = 0; i < 100; i++) {
-            String data = "Data_" + i;
-            bigDataList.add(data);
-        }
-
-        long startTime = System.nanoTime();
         StreamMetadata metadata = StreamMetadata.newBuilder()
                 .setAppId("app id 101")
                 .setCaseNumber(1234355)
@@ -35,6 +30,13 @@ public class TestRunner7 {
                 .setEncoding("encoding")
                 .setSampleRate(354)
                 .build();
+
+        List<String> bigDataList = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            String data = "Data_" + i;
+            bigDataList.add(data);
+        }
 
         StartData startData = StartData.newBuilder()
                 .setAccountSid("acc id 101")
@@ -49,26 +51,15 @@ public class TestRunner7 {
                 .setDurationMillis(122424)
                 .build();
 
-        TwilioEvent twilioEvent = TwilioEvent.newBuilder()
+        return TwilioEvent.newBuilder()
                 .setEvent("setting event 101")
                 .setStart(startData)
                 .setMedia(mediaData)
                 .build();
-        long endTime = System.nanoTime();
-        System.out.println("Proto Build Time: " + (endTime-startTime));
-        return twilioEvent;
     }
 
     private static test.beans2.TwilioEvent getObjJson(byte[] byteData){
 
-        List<String> bigDataList = new ArrayList<>();
-
-        for (int i = 0; i < 100; i++) {
-            String data = "Data_" + i;
-            bigDataList.add(data);
-        }
-
-        long startTime = System.nanoTime();
         test.beans2.StreamMetadata metadata = new test.beans2.StreamMetadata();
         metadata.setAppId("app id 101");
         metadata.setCaseNumber(1234355L);
@@ -76,6 +67,12 @@ public class TestRunner7 {
         metadata.setPartnerId(String.valueOf(24345324));
 
         test.beans2.MediaFormat mediaFormat = new test.beans2.MediaFormat("encoding",12 , 354);
+        List<String> bigDataList = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            String data = "Data_" + i;
+            bigDataList.add(data);
+        }
 
         test.beans2.StartData startData = new test.beans2.StartData();
         startData.setAccountSid("acc id 101");
@@ -88,14 +85,11 @@ public class TestRunner7 {
 //        mediaData.setBytes(byteData);
         mediaData.setDurationMillis(122424);
 
-
         test.beans2.TwilioEvent twilioEvent = new test.beans2.TwilioEvent();
         twilioEvent.setEvent("setting event 101");
         twilioEvent.setStart(startData);
         twilioEvent.setMedia(mediaData);
-        long endTime = System.nanoTime();
 
-        System.out.println("JSON build Time: " + (endTime-startTime));
         return twilioEvent;
     }
 
@@ -137,7 +131,7 @@ public class TestRunner7 {
 
     public static void main(String[] args) throws IOException {
 
-        byte[] audioBytesArr = readFileToByteArray(path21);
+        byte[] audioBytesArr = readFileToByteArray(path1);
         List<Integer> audioBytesList = new ArrayList<>();
 
         for (byte b:audioBytesArr){
@@ -156,7 +150,12 @@ public class TestRunner7 {
         byte[] serializedProto = serializeProto(twilioEvent);
         deserializeProto(serializedProto);
 
-        System.out.println("Size in Json: " + ((double)serializedJson.getBytes().length)/1024);
-        System.out.println("Size in proto: " + ((double)serializedProto.length)/1024);
+        System.out.println("Shallow size: ");
+        System.out.println(ClassLayout.parseInstance(twilioEvent1).toPrintable());
+        System.out.println(ClassLayout.parseInstance(twilioEvent).toPrintable());
+
+        System.out.println("Deep size: ");
+        System.out.println(GraphLayout.parseInstance(twilioEvent1).totalSize());
+        System.out.println(GraphLayout.parseInstance(twilioEvent).totalSize());
     }
 }

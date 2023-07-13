@@ -1,9 +1,12 @@
-package test;
+package test.sizetesting;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.bean1.AudioFeedData;
+import org.openjdk.jol.info.ClassLayout;
+import org.openjdk.jol.info.GraphLayout;
+
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -14,7 +17,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestRunner5 {
+public class TestRunner1 {
 
     public static final double mega = 1000000;
     public static final String path1 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-1.wav";
@@ -91,8 +94,6 @@ public class TestRunner5 {
     public static test.bean1.AudioFeedData getObject(byte[] audioBytes){
         test.bean1.AudioFeedData audioFeedData1 = new test.bean1.AudioFeedData();
 
-        long startTime = System.nanoTime();
-
         audioFeedData1.setPartnerId(132324244);
         audioFeedData1.setStreamId("stream id");
         audioFeedData1.setConversationId("conversation id111");
@@ -111,16 +112,13 @@ public class TestRunner5 {
         audioFeedData1.setDuration(33435453);
         audioFeedData1.setCumulativeAudioDuration(12343545);
         audioFeedData1.setStreamingData(true);
-
-        long endTime = System.nanoTime();
-
-        System.out.println("JSON Build time: " + (endTime-startTime));
         return audioFeedData1;
     }
 
     public static void main(String[] args) throws IOException, UnsupportedAudioFileException {
 
         byte[] audioBytesArr = getAudio(path1);
+
         List<Integer> audioBytesList = new ArrayList<>();
 
         for (byte b:audioBytesArr){
@@ -128,7 +126,6 @@ public class TestRunner5 {
         }
 
         // object for protoBuf
-        long startTime = System.nanoTime();
         AudioFeedData audioFeedData = AudioFeedData.newBuilder()
                 .setPartnerId(132324244)
                 .setStreamId("stream id")
@@ -149,7 +146,6 @@ public class TestRunner5 {
                 .setCumulativeAudioDuration(12343545)
                 .setStreamingData(true)
                 .build();
-        long endTime = System.nanoTime();
 
         // Object for Json
         test.bean1.AudioFeedData audioFeedData1 = getObject(audioBytesArr);
@@ -162,6 +158,12 @@ public class TestRunner5 {
         byte[] serializedProto = serializeProto(audioFeedData);
         deserializeProto(serializedProto);
 
-        System.out.println("Proto Build time: " + (endTime-startTime));
+        System.out.println("Shallow size: ");
+        System.out.println(ClassLayout.parseInstance(audioFeedData1).toPrintable());
+        System.out.println(ClassLayout.parseInstance(audioFeedData).toPrintable());
+
+        System.out.println("Deep size: ");
+        System.out.println(GraphLayout.parseInstance(audioFeedData1).toFootprint());
+        System.out.println(GraphLayout.parseInstance(audioFeedData).toFootprint());
     }
 }

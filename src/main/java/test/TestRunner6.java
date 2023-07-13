@@ -14,13 +14,12 @@ import static test.TestRunner5.*;
 
 public class TestRunner6 {
 
-    private static final int fre = 1;
+    private static final int fre = 10;
 
     private static List<AudioFeedData> getListAudioData() throws IOException {
         List<AudioFeedData> audioFeedData = new ArrayList<>();
 
         audioFeedData.add(getAudioFeed(path1));
-        audioFeedData.add(getAudioFeed(path4));
 
         return audioFeedData;
     }
@@ -86,7 +85,6 @@ public class TestRunner6 {
 
         List<test.bean1.AudioFeedData> list = new ArrayList<>();
         list.add(getFeedFromPath(path1));
-        list.add(getFeedFromPath(path4));
 
         test.bean1.AudioStreamFeedData audioStreamFeedData = new test.bean1.AudioStreamFeedData(1234544, "stream id", "app id 101");
         for (test.bean1.AudioFeedData data : list){
@@ -147,7 +145,7 @@ public class TestRunner6 {
 
     public static void main(String[] args) throws IOException {
 
-        byte[] audioBytesArr = readFileToByteArray(path114);
+        byte[] audioBytesArr = readFileToByteArray(path1);
 
         List<AudioFeedData> audioFeedDataList = getListAudioData();
 

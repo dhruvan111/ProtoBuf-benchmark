@@ -1,20 +1,23 @@
-package test;
+package test.accuracy;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.bean1.AudioFeedData;
+import org.springframework.data.mongodb.core.aggregation.Fields;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.*;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class TestRunner5 {
+public class TestRunner1 {
 
     public static final double mega = 1000000;
     public static final String path1 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-1.wav";
@@ -22,6 +25,7 @@ public class TestRunner5 {
     public static final String path21 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-21.wav";
     public static final String path83 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-83.wav";
     public static final String path114 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-114.wav";
+    static ObjectMapper objectMapper = new ObjectMapper();
 
     public static byte[] readFileToByteArray(String filePath) throws IOException {
         File file = new File(filePath);
@@ -72,7 +76,6 @@ public class TestRunner5 {
     }
 
     private static void deserializeJson(String serializedData) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
         double t1 = System.nanoTime();
         test.bean1.AudioFeedData audioFeedData = objectMapper.readValue(serializedData, test.bean1.AudioFeedData.class);
         double t2 = System.nanoTime();
@@ -91,7 +94,6 @@ public class TestRunner5 {
     public static test.bean1.AudioFeedData getObject(byte[] audioBytes){
         test.bean1.AudioFeedData audioFeedData1 = new test.bean1.AudioFeedData();
 
-        long startTime = System.nanoTime();
 
         audioFeedData1.setPartnerId(132324244);
         audioFeedData1.setStreamId("stream id");
@@ -112,13 +114,33 @@ public class TestRunner5 {
         audioFeedData1.setCumulativeAudioDuration(12343545);
         audioFeedData1.setStreamingData(true);
 
-        long endTime = System.nanoTime();
 
-        System.out.println("JSON Build time: " + (endTime-startTime));
         return audioFeedData1;
     }
 
-    public static void main(String[] args) throws IOException, UnsupportedAudioFileException {
+
+    public static boolean accuracyTest(test.bean1.AudioFeedData audioFeedData1, test.bean1.AudioFeedData audioFeedData2) throws IllegalAccessException {
+        Field[] fields = audioFeedData1.getClass().getDeclaredFields();
+        for (Field field: fields){
+            field.setAccessible(true);
+            if (!compareFields(audioFeedData1, audioFeedData2, field)){
+
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean compareFields(Object obj1, Object obj2,Field field) throws IllegalAccessException {
+        Object val1 = field.get(obj1);
+        Object val2 = field.get(obj2);
+        if (field.getType().equals(byte[].class)){
+            return (Arrays.equals((byte[]) val1, (byte[]) val2));
+        }
+        return ((val1 != null) && val1.equals(val2));
+    }
+
+    public static void main(String[] args) throws IOException, UnsupportedAudioFileException, IllegalAccessException {
 
         byte[] audioBytesArr = getAudio(path1);
         List<Integer> audioBytesList = new ArrayList<>();
@@ -128,7 +150,6 @@ public class TestRunner5 {
         }
 
         // object for protoBuf
-        long startTime = System.nanoTime();
         AudioFeedData audioFeedData = AudioFeedData.newBuilder()
                 .setPartnerId(132324244)
                 .setStreamId("stream id")
@@ -149,19 +170,68 @@ public class TestRunner5 {
                 .setCumulativeAudioDuration(12343545)
                 .setStreamingData(true)
                 .build();
-        long endTime = System.nanoTime();
 
         // Object for Json
         test.bean1.AudioFeedData audioFeedData1 = getObject(audioBytesArr);
 
-        //Json
-        String serializedJson = serializeJson(audioFeedData1);
-        deserializeJson(serializedJson);
+        // making proto obj with java bean data
+        AudioFeedData audioFeedDataObj = AudioFeedData.newBuilder()
+                .setPartnerId(audioFeedData1.getPartnerId())
+                .setStreamId(audioFeedData1.getStreamId())
+                .setConversationId(audioFeedData1.getConversationId())
+                .setAppId(audioFeedData1.getAppId())
+                .setCaseNumber(audioFeedData1.getCaseNumber())
+                .setSeqNumber(audioFeedData1.getSeqNumber())
+                .setStreamStartTime(audioFeedData1.getStreamStartTime())
+                .setIsFinal(audioFeedData1.isFinal())
+                .setParticipantId(audioFeedData1.getParticipantId())
+                .setParticipantType(audioFeedData1.getParticipantType())
+                .addAllAudioBytes(audioBytesList)
+                .setCreatedTime(audioFeedData1.getCreatedTime())
+                .setDisableTranscript(audioFeedData1.isDisableTranscript())
+                .setDisableRecording(audioFeedData1.isDisableRecording())
+                .setLang(audioFeedData1.getLang())
+                .setDuration(audioFeedData1.getDuration())
+                .setCumulativeAudioDuration(audioFeedData1.getCumulativeAudioDuration())
+                .setStreamingData(audioFeedData1.isStreamingData())
+                .build();
 
-        // Proto
-        byte[] serializedProto = serializeProto(audioFeedData);
-        deserializeProto(serializedProto);
+        byte[] serProtoObj = serializeProto(audioFeedDataObj);
 
-        System.out.println("Proto Build time: " + (endTime-startTime));
+        AudioFeedData desProtoObj = AudioFeedData.parseFrom(serProtoObj);
+
+        byte[] audioBytesArrFromProto = new byte[desProtoObj.getAudioBytesList().size()];
+
+        int idx = 0;
+        for (Integer val:desProtoObj.getAudioBytesList()){
+            audioBytesArrFromProto[idx] = val.byteValue();
+            idx++;
+        }
+
+        test.bean1.AudioFeedData audioFeedDataJsonObj = new test.bean1.AudioFeedData();
+        audioFeedDataJsonObj.setPartnerId(desProtoObj.getPartnerId());
+        audioFeedDataJsonObj.setStreamId(desProtoObj.getStreamId());
+        audioFeedDataJsonObj.setConversationId(desProtoObj.getConversationId());
+        audioFeedDataJsonObj.setAppId(desProtoObj.getAppId());
+        audioFeedDataJsonObj.setCaseNumber(desProtoObj.getCaseNumber());
+        audioFeedDataJsonObj.setSeqNumber(desProtoObj.getSeqNumber());
+        audioFeedDataJsonObj.setStreamStartTime(desProtoObj.getStreamStartTime());
+        audioFeedDataJsonObj.setFinal(desProtoObj.getIsFinal());
+        audioFeedDataJsonObj.setParticipantId(desProtoObj.getParticipantId());
+        audioFeedDataJsonObj.setParticipantType(desProtoObj.getParticipantType());
+        audioFeedDataJsonObj.setAudioBytes(audioBytesArrFromProto);
+        audioFeedDataJsonObj.setCreatedTime(desProtoObj.getCreatedTime());
+        audioFeedDataJsonObj.setDisableTranscript(desProtoObj.getDisableTranscript());
+        audioFeedDataJsonObj.setDisableRecording(desProtoObj.getDisableRecording());
+        audioFeedDataJsonObj.setLang(desProtoObj.getLang());
+        audioFeedDataJsonObj.setDuration(desProtoObj.getDuration());
+        audioFeedDataJsonObj.setCumulativeAudioDuration(desProtoObj.getCumulativeAudioDuration());
+        audioFeedDataJsonObj.setStreamingData(desProtoObj.getStreamingData());
+
+        if (accuracyTest(audioFeedData1, audioFeedDataJsonObj)){
+            System.out.println("Accuracy test passed.");
+        } else {
+            System.out.println("Accuracy test failed.");
+        }
     }
 }

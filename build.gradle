@@ -48,6 +48,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.28'
     testCompileOnly 'org.projectlombok:lombok:1.18.28'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+    implementation 'org.openjdk.jol:jol-core:0.14'
 }
 
 test {
