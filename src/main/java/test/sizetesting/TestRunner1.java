@@ -21,10 +21,6 @@ public class TestRunner1 {
 
     public static final double mega = 1000000;
     public static final String path1 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-1.wav";
-    public static final String path4 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-4.wav";
-    public static final String path21 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-21.wav";
-    public static final String path83 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-83.wav";
-    public static final String path114 = "/Users/dhruvankadavala/Documents/Protobuf2/src/main/java/test/5-hours-output/speech-114.wav";
 
     public static byte[] readFileToByteArray(String filePath) throws IOException {
         File file = new File(filePath);
@@ -47,12 +43,7 @@ public class TestRunner1 {
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(byteArrayInputStream);
         AudioFormat format = audioInputStream.getFormat();
         System.out.println("Received audio : " + format + " frame length : " + audioInputStream.getFrameLength());
-//        if (format.getEncoding() != AudioFormat.Encoding.PCM_SIGNED) {
-//            // TODO: transform audio if needed
-//        }
-        byte[] data = new byte[(int) audioInputStream.getFrameLength() * format.getFrameSize()];
-        int read = audioInputStream.read(data); //Audio Byte Data
-        return data;
+        return new byte[(int) audioInputStream.getFrameLength() * format.getFrameSize()];
     }
 
     private static String serializeJson(Object object) throws JsonProcessingException {
@@ -101,7 +92,7 @@ public class TestRunner1 {
         audioFeedData1.setCaseNumber(123243455);
         audioFeedData1.setSeqNumber(12244);
         audioFeedData1.setStreamStartTime(32324342);
-        audioFeedData1.setFinal(true);;
+        audioFeedData1.setFinal(true);
         audioFeedData1.setParticipantId("participant ID1010");
         audioFeedData1.setParticipantType("part. type");
         audioFeedData1.setAudioBytes(audioBytes);

@@ -8,6 +8,7 @@ import org.beans2.*;
 import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.info.GraphLayout;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class TestRunner2 {
 
         MediaData mediaData = MediaData.newBuilder()
                 .setPayload("pay load 101")
-//                .addAllBytes(byteData)
+                .addAllBytes(byteData)
                 .setDurationMillis(122424)
                 .build();
 
@@ -82,7 +83,7 @@ public class TestRunner2 {
 
         test.beans2.MediaData mediaData = new test.beans2.MediaData();
         mediaData.setPayload("pay load 101");
-//        mediaData.setBytes(byteData);
+        mediaData.setBytes(byteData);
         mediaData.setDurationMillis(122424);
 
         test.beans2.TwilioEvent twilioEvent = new test.beans2.TwilioEvent();
@@ -129,9 +130,9 @@ public class TestRunner2 {
         System.out.println("Deserialization Proto: " + (t2-t1)/mega);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, UnsupportedAudioFileException {
 
-        byte[] audioBytesArr = readFileToByteArray(path1);
+        byte[] audioBytesArr = getAudio(path1);
         List<Integer> audioBytesList = new ArrayList<>();
 
         for (byte b:audioBytesArr){

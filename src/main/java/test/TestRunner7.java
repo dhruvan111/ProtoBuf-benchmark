@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.beans2.*;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -135,9 +136,9 @@ public class TestRunner7 {
         System.out.println("Deserialization Proto: " + (t2-t1)/mega);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, UnsupportedAudioFileException {
 
-        byte[] audioBytesArr = readFileToByteArray(path21);
+        byte[] audioBytesArr = getAudio(path4);
         List<Integer> audioBytesList = new ArrayList<>();
 
         for (byte b:audioBytesArr){

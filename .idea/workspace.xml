@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8c8be348-68e7-4093-a5a4-eb67a1cd9f68" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/test/FinalTestRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/test/FinalTestRunner1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/test/FinalTestRunner2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/test/FinalTestRunner3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/test/FinalTestRunner4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/TestRunner5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/TestRunner5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/TestRunner6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/TestRunner6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/TestRunner7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/TestRunner7.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/accuracy/TestRunner1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/accuracy/TestRunner1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/sizetesting/TestRunner1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/sizetesting/TestRunner1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/sizetesting/TestRunner2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/sizetesting/TestRunner2.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ProtoVsJSON" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ProtoVsJSON" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2RpZWfaQf7MpJeRozlkH6CXOmCJ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/dhruvankadavala/Documents/ProtoVsJSON",
+    "onboarding.tips.debug.path": "/Users/dhruvankadavala/Documents/ProtoVsJSON/src/main/java/org/example/Main.java",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/proto/org" />
+      <recent name="$PROJECT_DIR$/src/main/proto/org/beans2" />
+      <recent name="$PROJECT_DIR$/src/main/proto/org/bean1" />
+      <recent name="$PROJECT_DIR$/src/main/java" />
+      <recent name="$PROJECT_DIR$/src/main/java/org/example" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ProtoVsJSON [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProtoVsJSON [generateProto]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="generateProto" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ProtoVsJSON [assemble]" />
+        <item itemvalue="Gradle.ProtoVsJSON [generateProto]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c8be348-68e7-4093-a5a4-eb67a1cd9f68" name="Changes" comment="" />
+      <created>1687949017628</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687949017628</updated>
+    </task>
+    <servers />
+  </component>
+</project>
